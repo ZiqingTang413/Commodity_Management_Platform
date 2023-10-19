@@ -17,6 +17,7 @@
     </environments>
     <mappers>
         <!--load sql *Mapper.xml-->
-        <mapper resource="UserMapper.xml"/>
+        <!--<mapper resource="com/mybatis/mapper/UserMapper.xml"/>-->
+        <package name="com.mybatis.mapper"/>
     </mappers>
 </configuration>
