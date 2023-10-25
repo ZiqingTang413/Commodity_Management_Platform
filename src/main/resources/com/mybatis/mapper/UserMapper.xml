@@ -9,11 +9,12 @@
     <!--id: sql qurey id
         resulttype: type of the returning data - directory of the User class
         -->
-    <select id="selectAll" resultType="com.mybatis.User">
+    <!--sql statement-->
+    <select id="selectAll" resultType="com.mybatis.pojo.User">
         select * from tb_user;
     </select>
 
-    <select id="selectByUsername" resultType="com.mybatis.User">
-        select * from tb_user where username = 'lisi';
+    <select id="selectByUsername" resultType="com.mybatis.pojo.User">
+        select * from tb_user where id = #{id};
     </select>
 </mapper>

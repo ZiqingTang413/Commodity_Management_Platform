@@ -3,7 +3,12 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <environments default="development">
+    <!-- Global settings -->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <!--different environments refers to different databases-->
+    <environments default="development"> <!--default database in use-->
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
@@ -15,9 +20,15 @@
             </dataSource>
         </environment>
     </environments>
+
+
+
+
     <mappers>
         <!--load sql *Mapper.xml-->
         <!--<mapper resource="com/mybatis/mapper/UserMapper.xml"/>-->
         <package name="com.mybatis.mapper"/>
     </mappers>
+
+
 </configuration>
