@@ -71,7 +71,7 @@ public class MybatisTest {
 
         companyName = "%" + companyName + "%";
         brandName = "%" + brandName + "%";
-         // capsulated in an object
+        // capsulated in an object
         /*Brand brand = new Brand();
         brand.setStatus(status);
         brand.setCompanyName(companyName);
