@@ -5,11 +5,12 @@
 <mapper namespace="com.mybatis.mapper.BrandMapper">
     <resultMap id="brandResultMap" type="com.mybatis.pojo.Brand">
         <result column="brand_name" property="brandName" />
-        <result column="company_name" property="brandName" />
+        <result column="company_name" property="companyName" />
     </resultMap>
 
 
     <select id="selectAll" parameterType="int" resultMap="brandResultMap">
+        <!--paramterType is not necessary-->
         select *
         from tb_brand;
     </select>
@@ -18,6 +19,21 @@
         select *
         from tb_brand where id = #{id};
     </select>
+    
+    <select id="selectByIdLess" resultMap="brandResultMap">
+        select * 
+        from tb_brand where id <![CDATA[<]]> #{id};
+    </select>
+    <!--
+        conditional queries
+    -->
+    <select id = "selectByCondition" resultMap="brandResultMap">
+        select *
+        from tb_brand
+        where status = #{status}
+        and company_name like #{companyName}
+        and brand_name like #{brandName};
 
+    </select>
 
 </mapper>

@@ -10,7 +10,9 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MybatisTest {
     @Test
@@ -45,8 +47,56 @@ public class MybatisTest {
         SqlSession sqlSession = sqlSessionFactory.openSession();
 
         BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+
         System.out.println(brandMapper.selectById(2));
 
+        System.out.println(brandMapper.selectByIdLess(2));
+
+        sqlSession.close();
+
     }
+
+    @Test
+    public void selectByCondition() throws IOException {
+        /*
+            condition:
+            status = 1
+            companyName = %N%
+            brandName = %A%
+
+         */
+        int status = 1;
+        String companyName = "N";
+        String brandName = "Air";
+
+        companyName = "%" + companyName + "%";
+        brandName = "%" + brandName + "%";
+         // capsulated in an object
+        /*Brand brand = new Brand();
+        brand.setStatus(status);
+        brand.setCompanyName(companyName);
+        brand.setBrandName(brandName);*/
+
+        Map map = new HashMap();
+        map.put("status", status);
+        map.put("companyName",companyName);
+        map.put("brandName", brandName);
+
+        String resource = "mybatis-config.xml";
+
+        InputStream inputStream = Resources.getResourceAsStream(resource);
+        SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(inputStream);
+        SqlSession sqlSession = sqlSessionFactory.openSession();
+
+        BrandMapper brandMapper = sqlSession.getMapper(BrandMapper.class);
+
+        //System.out.println(brandMapper.selectByCondition(status, companyName, brandName));
+        System.out.println(brandMapper.selectByCondition(map));
+
+        sqlSession.close();
+
+    }
+
+
 
 }
