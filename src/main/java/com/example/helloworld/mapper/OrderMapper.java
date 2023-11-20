@@ -1,5 +1,6 @@
 package com.example.helloworld.mapper;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.helloworld.entity.Order;
 import com.example.helloworld.entity.User;
 import org.apache.ibatis.annotations.*;
@@ -26,6 +27,6 @@ public interface OrderMapper {
             ,@Result(column = "uid", property = "user", javaType = User.class,
             one = @One(select = "com.example.helloworld.mapper.UserMapper.selectUserById"))
     })
-    public List<Order> selectAllOrderAndUser();
+    public Page<Order> selectAllOrderAndUser(Page<Order> page);
 
 }

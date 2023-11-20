@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 public class UserController {
-    @ApiOperation("get user by id") // swagger
+    @ApiOperation("get user by id") // for swagger
     @GetMapping("user/{id}")
     public String getUserById(@PathVariable int id) { // @PathVariable: get variable from path
         System.out.println(id);
